@@ -42,13 +42,14 @@ class _SplashPageWidget extends StatelessWidget {
         // Navigator.of(context).pushReplacementNamed(RouteName.login.route);
         if (state is SplashUnauthorized) {
           Navigator.of(context).pushReplacementNamed(RouteName.login.route);
-        }
-        else if (state is SplashAuthorized) {
-          Navigator.of(context).pushReplacementNamed(RouteName.candidates.route);
+        } else if (state is SplashNavigationRouteGenerated) {
+          Navigator.of(context).pushReplacementNamed(state.route);
         }
       },
       child: const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

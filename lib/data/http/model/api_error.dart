@@ -22,3 +22,12 @@ class ApiError extends Equatable {
   @override
   List<Object?> get props => [code, message, error];
 }
+
+enum ApiClientExceptionType { network, auth, other, sessionExpired, shiftIsWaiting }
+
+class ApiClientException implements Exception {
+  final ApiClientExceptionType type;
+  final String? message;
+
+  ApiClientException(this.type, {this.message = ''});
+}

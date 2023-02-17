@@ -27,8 +27,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   ) async {
     final token = await tokenRepository.getItem();
     final user = await userRepository.getItem();
-    if (token == null || token.isEmpty) {
-      emit(const SplashUnauthorized());
+    if (token != null || token != null) {
       if (user == null) {
         emit(
           SplashNavigationRouteGenerated(route: RouteName.auditsHistory.route),
@@ -41,7 +40,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         }
       }
     } else {
-      emit(const SplashAuthorized());
+      emit(
+        SplashNavigationRouteGenerated(route: RouteName.login.route),
+      );
     }
   }
 }

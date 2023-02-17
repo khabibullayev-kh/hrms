@@ -4,13 +4,16 @@ import 'package:hrms_clean_code/data/http/authorization_interceptor.dart';
 import 'package:hrms_clean_code/data/http/authorized_api_service.dart';
 import 'package:hrms_clean_code/data/http/dio_provider.dart';
 import 'package:hrms_clean_code/data/http/unauthorized_api_service.dart';
+import 'package:hrms_clean_code/data/repository/lang_repository.dart';
 import 'package:hrms_clean_code/data/repository/login_repository.dart';
 import 'package:hrms_clean_code/data/repository/refresh_token_provider.dart';
 import 'package:hrms_clean_code/data/repository/refresh_token_repository.dart';
 import 'package:hrms_clean_code/data/repository/storage/shared_preference_data.dart';
 import 'package:hrms_clean_code/data/repository/token_repository.dart';
 import 'package:hrms_clean_code/data/repository/user_repository.dart';
+import 'package:hrms_clean_code/data/service/candidate_api_service.dart';
 import 'package:hrms_clean_code/domain/logout_interactor.dart';
+import 'package:hrms_clean_code/presentation/hrms/candidates/bloc/candidates_bloc.dart';
 import 'package:hrms_clean_code/presentation/login/bloc/login_bloc.dart';
 import 'package:hrms_clean_code/presentation/splash/bloc/splash_bloc.dart';
 
@@ -49,6 +52,9 @@ void _setupRepositories() {
   );
   sl.registerLazySingleton(
     () => LoginRepository(sl.get<SharedPreferenceData>()),
+  );
+  sl.registerLazySingleton(
+    () => LangRepository(sl.get<SharedPreferenceData>()),
   );
 }
 
@@ -91,6 +97,9 @@ void _setupApiRelatedClasses() {
   sl.registerLazySingleton(
     () => AuthorizedApiService(sl.get<Dio>(instanceName: _authorizedDio)),
   );
+  sl.registerLazySingleton(
+    () => CandidatesApiService(sl.get<Dio>(instanceName: _authorizedDio)),
+  );
 }
 
 /// ONLY FACTORIES
@@ -101,6 +110,14 @@ void _setupBlocs() {
       tokenRepository: sl.get<TokenRepository>(),
       unAuthorizedService: sl.get<UnauthorizedApiService>(),
       authorizedApiService: sl.get<AuthorizedApiService>(),
+    ),
+  );
+  sl.registerFactory(
+    () => CandidatesBloc(
+      candidatesApiService: sl.get<CandidatesApiService>(),
+      userRepository: sl.get<UserRepository>(),
+      logoutInteractor: sl.get<LogoutInteractor>(),
+      langRepository: sl.get<LangRepository>(),
     ),
   );
   // sl.registerFactory(

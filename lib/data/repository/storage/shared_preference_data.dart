@@ -6,6 +6,7 @@ class SharedPreferenceData implements RefreshTokenProvider {
   static const _refreshTokenKey = "refresh_token_key";
   static const _userKey = "user_key";
   static const _loginKey = "login_key";
+  static const _langKey = "lang_key";
 
   Future<bool> setToken(final String? token) =>
       _setItem(key: _tokenKey, item: token);
@@ -28,6 +29,11 @@ class SharedPreferenceData implements RefreshTokenProvider {
       _setItem(key: _loginKey, item: login);
 
   Future<String?> getLogin() => _getItem(_loginKey);
+
+  Future<bool> setLang(final String? login) =>
+      _setItem(key: _langKey, item: login);
+
+  Future<String?> getLang() => _getItem(_langKey);
 
   Future<bool> _setItem({
     required final String key,

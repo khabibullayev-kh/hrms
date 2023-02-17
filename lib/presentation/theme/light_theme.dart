@@ -5,7 +5,7 @@ final _base = ThemeData.light();
 
 final lightTheme = _base.copyWith(
   useMaterial3: true,
-  scaffoldBackgroundColor: AppColors.lightGreen,
+  scaffoldBackgroundColor: Colors.white,
   textTheme: _base.textTheme.copyWith(
     displayLarge: const TextStyle(
       fontSize: 32,
@@ -56,9 +56,9 @@ final lightTheme = _base.copyWith(
       foregroundColor: MaterialStateProperty.all(AppColors.lightWhite100),
       backgroundColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.disabled)) {
-          return AppColors.lightLightBlue70;
+          return AppColors.lightGreen;
         }
-        return AppColors.lightDarkBlue100;
+        return AppColors.green;
       }),
     ),
   ),
@@ -77,14 +77,14 @@ final lightTheme = _base.copyWith(
       }),
       foregroundColor: MaterialStateProperty.resolveWith((states) {
         return states.contains(MaterialState.disabled)
-            ? AppColors.lightDarkBlue100.withOpacity(0.5)
-            : AppColors.lightDarkBlue100;
+            ? AppColors.green.withOpacity(0.5)
+            : AppColors.green;
       }),
       backgroundColor: MaterialStateProperty.resolveWith(
         (states) => Colors.transparent,
       ),
       overlayColor: MaterialStateProperty.all(
-        AppColors.lightLightBlue100,
+        AppColors.lightGreen,
       ),
     ),
   ),
@@ -124,8 +124,13 @@ final lightTheme = _base.copyWith(
     selectionHandleColor: AppColors.lightLightBlue100,
   ),
   appBarTheme: const AppBarTheme(
-    elevation: 0,
-    backgroundColor: AppColors.lightWhite100,
-    foregroundColor: AppColors.lightDarkBlue100,
+    //elevation: 0,
+    //scrolledUnderElevation: 0,
+    surfaceTintColor: AppColors.darkGreen,
+    //backgroundColor: AppColors.lightWhite100,
+    titleTextStyle: TextStyle(
+      fontSize: 16,
+      color: AppColors.lightBlack100,
+    ),
   ),
 );

@@ -69,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
     return BlocProvider(
       create: (_) => sl.get<LoginBloc>(),
       child: Scaffold(
+        backgroundColor: AppColors.lightGreen,
         body: Stack(
           children: const [
             LogoWidget(),

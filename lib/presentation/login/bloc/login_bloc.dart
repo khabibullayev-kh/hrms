@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:either_dart/either.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hrms_clean_code/data/http/api_error_type.dart';
 import 'package:hrms_clean_code/data/http/authorized_api_service.dart';
 import 'package:hrms_clean_code/data/http/model/api_error.dart';
 import 'package:hrms_clean_code/data/http/model/token_response_dto.dart';
@@ -169,64 +165,60 @@ class LoginBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
     if (state.inProgress) {
       return;
     }
-    if (state.password.isNotEmpty && state.username.isNotEmpty) {
-      final response = await _login(
-        username: state.username,
-        password: state.password,
-      );
-      emitter(AuthenticationState.inProgress(
-        username: state.username,
-        password: state.password,
-      ));
-      if (response.isRight) {
-        final tokenResponse = response.right;
-        await _tokenRepository.setItem(tokenResponse.accessToken);
-        final userResponse = await _getUser();
-        if (userResponse.isRight) {
-          await _userRepository.setItem(userResponse.right);
-        }
-      } else {
-        final apiError = response.left;
-        switch (apiError.errorType) {
-          case ApiErrorType.incorrectPassword:
-            emitter(AuthenticationState.error(
-              message: 'Неправильный логин или пароль',
-              username: state.username,
-              password: state.password,
-            ));
-            add(const AuthenticationEvent.errorShowed());
-            break;
-          case ApiErrorType.noConnection:
-            emitter(AuthenticationState.error(
-              message: 'Проверьте подключение к Интернету',
-              username: state.username,
-              password: state.password,
-            ));
-            add(const AuthenticationEvent.errorShowed());
-            break;
-          case ApiErrorType.notFound:
-            // emit(state.copyWith(emailError: EmailError.notExist));
-            break;
-          default:
-            emitter(AuthenticationState.error(
-              message: 'Неизвестная ошибка',
-              username: state.username,
-              password: state.password,
-            ));
-            add(const AuthenticationEvent.errorShowed());
-            break;
-        }
-      }
-    } else {
-      emitter(
-        AuthenticationState.error(
-          message: 'Заполните все поля',
+    try {
+      if (state.password.isNotEmpty && state.username.isNotEmpty) {
+        final response = await _login(
           username: state.username,
           password: state.password,
-        ),
-      );
-      print(state.username + state.password);
-      add(const AuthenticationEvent.errorShowed());
+        );
+        emitter(AuthenticationState.inProgress(
+          username: state.username,
+          password: state.password,
+        ));
+        if (response != null) {
+          await _tokenRepository.setItem(response.accessToken);
+          final userResponse = await _getUser();
+          if (userResponse != null) {
+            await _userRepository.setItem(userResponse);
+          }
+        }
+      } else {
+        emitter(
+          AuthenticationState.error(
+            message: 'Заполните все поля',
+            username: state.username,
+            password: state.password,
+          ),
+        );
+        add(const AuthenticationEvent.errorShowed());
+      }
+    } on ApiClientException catch (e) {
+      switch (e.type) {
+        case ApiClientExceptionType.network:
+          emitter(AuthenticationState.error(
+            message: 'Проверьте подключение к Интернету',
+            username: state.username,
+            password: state.password,
+          ));
+          add(const AuthenticationEvent.errorShowed());
+          break;
+        case ApiClientExceptionType.sessionExpired:
+          emitter(AuthenticationState.error(
+            message: 'Неправильный логин или пароль',
+            username: state.username,
+            password: state.password,
+          ));
+          add(const AuthenticationEvent.errorShowed());
+          break;
+        default:
+          emitter(AuthenticationState.error(
+            message: 'Неизвестная ошибка',
+            username: state.username,
+            password: state.password,
+          ));
+          add(const AuthenticationEvent.errorShowed());
+          break;
+      }
     }
   }
 
@@ -261,7 +253,7 @@ class LoginBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
     ));
   }
 
-  Future<Either<ApiError, TokenResponseDto>> _login({
+  Future<TokenResponseDto?> _login({
     required final String username,
     required final String password,
   }) async {
@@ -272,7 +264,7 @@ class LoginBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
     return response;
   }
 
-  Future<Either<ApiError, AuthenticatedUser>> _getUser() async {
+  Future<AuthenticatedUser?> _getUser() async {
     final response = await _authorizedApiService.getUser();
     return response;
   }
