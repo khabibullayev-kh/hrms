@@ -16,6 +16,7 @@ class ReusableDropDownButton<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    items.insert(0, const DropdownMenuItem(value: null, child: Text('Все')));
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1.0),
       child: Container(
@@ -28,7 +29,7 @@ class ReusableDropDownButton<T> extends StatelessWidget {
           ),
         ),
         child: DropdownButtonHideUnderline(
-          child: DropdownButton<T>(
+          child: DropdownButton<T?>(
               hint: Text(hint ?? ''),
               isExpanded: true,
               value: value,

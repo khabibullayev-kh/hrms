@@ -41,7 +41,7 @@ class CandidatesEvent with _$CandidatesEvent {
   @With<_FilteredSearchStateEmitter>()
   const factory CandidatesEvent.fetchCandidates({
     required int page,
-    SexEnums? sex,
+    String? sex,
     int? jobPositionId,
     int? stateId,
     int? regionId,
@@ -88,7 +88,7 @@ class CandidatesState with _$CandidatesState {
     @Default([]) List<State> statesItems,
     @Default([]) List<District> regionItems,
     @Default([]) List<Branch> branchesItems,
-    SexEnums? sex,
+    String? sex,
     int? jobPositionId,
     int? statesId,
     int? regionId,
@@ -263,7 +263,6 @@ class CandidatesBloc extends Bloc<CandidatesEvent, CandidatesState> {
         onlyHotCandidates: state.isShowingHotCandidates,
       );
       if (candidates!.result.candidates.isEmpty) {
-        print("EEASY");
         emitter(event.nothingFoundState(state: state));
       } else {
         final candidatesInfo = CandidateMapper.fromCandidates(candidates, lang);
@@ -436,7 +435,7 @@ mixin _SearchStateEmitter on CandidatesEvent {
 mixin _FilteredSearchStateEmitter on CandidatesEvent {
   CandidatesState filteredSearch({
     required CandidatesState state,
-    required SexEnums? sex,
+    required String? sex,
     required int? jobPositionId,
     required int? statesId,
     required int? regionId,

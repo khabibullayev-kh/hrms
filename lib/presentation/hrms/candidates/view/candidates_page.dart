@@ -3,13 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hrms_clean_code/data/bloc/pagination_bloc.dart';
 import 'package:hrms_clean_code/data/http/model/user_dto.dart';
 import 'package:hrms_clean_code/di/service_locator.dart';
 import 'package:hrms_clean_code/presentation/hrms/candidates/bloc/candidates_bloc.dart';
 import 'package:hrms_clean_code/presentation/hrms/candidates/mapper/candidate_mappers.dart';
+import 'package:hrms_clean_code/presentation/hrms/candidates/view/filter_candidates_page.dart';
 import 'package:hrms_clean_code/presentation/widgets/pagination_widget.dart';
 import 'package:hrms_clean_code/resources/app_colors.dart';
+import 'package:hrms_clean_code/resources/icons.dart';
+import 'package:provider/provider.dart';
 
 class CandidatePage extends StatefulWidget {
   const CandidatePage({Key? key}) : super(key: key);
@@ -36,10 +40,41 @@ class _CandidatePageState extends State<CandidatePage> {
           title: const Text('Кандидаты'),
           actions: const [
             _BadgeWidget(),
+            _FilterWidget(),
           ],
         ),
         body: const _CandidatesPageBody(),
       ),
+    );
+  }
+}
+
+class _FilterWidget extends StatelessWidget {
+  const _FilterWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = Provider.of<CandidatesBloc>(context, listen: false);
+    return IconButton(
+      tooltip: 'Фильтр',
+      onPressed: () async {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          useRootNavigator: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          builder: (context) {
+            return Provider.value(
+              value: bloc,
+              child: const FilterCandidatePage(),
+            );
+          },
+        );
+      },
+      icon: SvgPicture.asset(AppIcons.filter),
     );
   }
 }
@@ -407,6 +442,11 @@ class PaginationRow extends StatelessWidget {
                     bloc.add(
                       CandidatesEvent.fetchCandidates(
                         page: int.parse(page),
+                        sex: bloc.state.sex,
+                        jobPositionId: bloc.state.jobPositionId,
+                        stateId: bloc.state.statesId,
+                        regionId: bloc.state.regionId,
+                        branchId: bloc.state.branchId,
                       ),
                     );
                   }

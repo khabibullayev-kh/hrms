@@ -7,9 +7,9 @@ class DioBuilder {
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: 'https://api3.hrms.uz',
-      connectTimeout: 5000,
-      receiveTimeout: 5000,
-      sendTimeout: 5000,
+      connectTimeout: 10000,
+      receiveTimeout: 10000,
+      sendTimeout: 10000,
     ),
   );
 

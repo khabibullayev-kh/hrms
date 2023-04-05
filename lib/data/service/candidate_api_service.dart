@@ -8,7 +8,6 @@ import 'package:hrms_clean_code/data/http/model/other/district_response_dto.dart
 import 'package:hrms_clean_code/data/http/model/other/job_position_response_dto.dart';
 import 'package:hrms_clean_code/data/http/model/other/state_response_dto.dart';
 import 'package:hrms_clean_code/data/http/model/vacancy/vacancy_response_dto.dart';
-import 'package:hrms_clean_code/resources/enums.dart';
 
 abstract class ICandidatesRepository {
   Future<Candidates?> getCandidates({
@@ -18,7 +17,7 @@ abstract class ICandidatesRepository {
     int? regionId,
     int? stateId,
     int? jobPositionId,
-    SexEnums? sex,
+    String? sex,
     bool onlyHotCandidates = false,
   });
 
@@ -72,7 +71,7 @@ class CandidatesApiService extends BaseApiService
     int? regionId,
     int? stateId,
     int? jobPositionId,
-    SexEnums? sex,
+    String? sex,
     bool onlyHotCandidates = false,
   }) async {
     return response(() async {

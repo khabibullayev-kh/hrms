@@ -19,7 +19,7 @@ mixin _$CandidatesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(int page, SexEnums? sex, int? jobPositionId,
+    required TResult Function(int page, String? sex, int? jobPositionId,
             int? stateId, int? regionId, int? branchId)
         fetchCandidates,
     required TResult Function(String query) search,
@@ -31,7 +31,7 @@ mixin _$CandidatesEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult? Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult? Function(String query)? search,
@@ -43,7 +43,7 @@ mixin _$CandidatesEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult Function(String query)? search,
@@ -151,7 +151,7 @@ class _$_InitCandidatesEvent extends _InitCandidatesEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(int page, SexEnums? sex, int? jobPositionId,
+    required TResult Function(int page, String? sex, int? jobPositionId,
             int? stateId, int? regionId, int? branchId)
         fetchCandidates,
     required TResult Function(String query) search,
@@ -166,7 +166,7 @@ class _$_InitCandidatesEvent extends _InitCandidatesEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult? Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult? Function(String query)? search,
@@ -181,7 +181,7 @@ class _$_InitCandidatesEvent extends _InitCandidatesEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult Function(String query)? search,
@@ -262,7 +262,7 @@ abstract class _$$_FetchCandidatesCandidatesEventCopyWith<$Res> {
   @useResult
   $Res call(
       {int page,
-      SexEnums? sex,
+      String? sex,
       int? jobPositionId,
       int? stateId,
       int? regionId,
@@ -297,7 +297,7 @@ class __$$_FetchCandidatesCandidatesEventCopyWithImpl<$Res>
       sex: freezed == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
-              as SexEnums?,
+              as String?,
       jobPositionId: freezed == jobPositionId
           ? _value.jobPositionId
           : jobPositionId // ignore: cast_nullable_to_non_nullable
@@ -337,7 +337,7 @@ class _$_FetchCandidatesCandidatesEvent extends _FetchCandidatesCandidatesEvent
   @override
   final int page;
   @override
-  final SexEnums? sex;
+  final String? sex;
   @override
   final int? jobPositionId;
   @override
@@ -383,7 +383,7 @@ class _$_FetchCandidatesCandidatesEvent extends _FetchCandidatesCandidatesEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(int page, SexEnums? sex, int? jobPositionId,
+    required TResult Function(int page, String? sex, int? jobPositionId,
             int? stateId, int? regionId, int? branchId)
         fetchCandidates,
     required TResult Function(String query) search,
@@ -399,7 +399,7 @@ class _$_FetchCandidatesCandidatesEvent extends _FetchCandidatesCandidatesEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult? Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult? Function(String query)? search,
@@ -415,7 +415,7 @@ class _$_FetchCandidatesCandidatesEvent extends _FetchCandidatesCandidatesEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult Function(String query)? search,
@@ -486,7 +486,7 @@ abstract class _FetchCandidatesCandidatesEvent extends CandidatesEvent
         _FilteredSearchStateEmitter {
   const factory _FetchCandidatesCandidatesEvent(
       {required final int page,
-      final SexEnums? sex,
+      final String? sex,
       final int? jobPositionId,
       final int? stateId,
       final int? regionId,
@@ -494,7 +494,7 @@ abstract class _FetchCandidatesCandidatesEvent extends CandidatesEvent
   const _FetchCandidatesCandidatesEvent._() : super._();
 
   int get page;
-  SexEnums? get sex;
+  String? get sex;
   int? get jobPositionId;
   int? get stateId;
   int? get regionId;
@@ -574,7 +574,7 @@ class _$_SearchCandidatesEvent extends _SearchCandidatesEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(int page, SexEnums? sex, int? jobPositionId,
+    required TResult Function(int page, String? sex, int? jobPositionId,
             int? stateId, int? regionId, int? branchId)
         fetchCandidates,
     required TResult Function(String query) search,
@@ -589,7 +589,7 @@ class _$_SearchCandidatesEvent extends _SearchCandidatesEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult? Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult? Function(String query)? search,
@@ -604,7 +604,7 @@ class _$_SearchCandidatesEvent extends _SearchCandidatesEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult Function(String query)? search,
@@ -725,7 +725,7 @@ class _$_ReloadCandidatesEvent extends _ReloadCandidatesEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(int page, SexEnums? sex, int? jobPositionId,
+    required TResult Function(int page, String? sex, int? jobPositionId,
             int? stateId, int? regionId, int? branchId)
         fetchCandidates,
     required TResult Function(String query) search,
@@ -740,7 +740,7 @@ class _$_ReloadCandidatesEvent extends _ReloadCandidatesEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult? Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult? Function(String query)? search,
@@ -755,7 +755,7 @@ class _$_ReloadCandidatesEvent extends _ReloadCandidatesEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult Function(String query)? search,
@@ -905,7 +905,7 @@ class _$_ShowHotCandidatesCandidatesEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(int page, SexEnums? sex, int? jobPositionId,
+    required TResult Function(int page, String? sex, int? jobPositionId,
             int? stateId, int? regionId, int? branchId)
         fetchCandidates,
     required TResult Function(String query) search,
@@ -920,7 +920,7 @@ class _$_ShowHotCandidatesCandidatesEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult? Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult? Function(String query)? search,
@@ -935,7 +935,7 @@ class _$_ShowHotCandidatesCandidatesEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult Function(String query)? search,
@@ -1054,7 +1054,7 @@ class _$_ResetCandidatesEvent extends _ResetCandidatesEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(int page, SexEnums? sex, int? jobPositionId,
+    required TResult Function(int page, String? sex, int? jobPositionId,
             int? stateId, int? regionId, int? branchId)
         fetchCandidates,
     required TResult Function(String query) search,
@@ -1069,7 +1069,7 @@ class _$_ResetCandidatesEvent extends _ResetCandidatesEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult? Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult? Function(String query)? search,
@@ -1084,7 +1084,7 @@ class _$_ResetCandidatesEvent extends _ResetCandidatesEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(int page, SexEnums? sex, int? jobPositionId, int? stateId,
+    TResult Function(int page, String? sex, int? jobPositionId, int? stateId,
             int? regionId, int? branchId)?
         fetchCandidates,
     TResult Function(String query)? search,
@@ -1162,7 +1162,7 @@ mixin _$CandidatesState {
   List<State> get statesItems => throw _privateConstructorUsedError;
   List<District> get regionItems => throw _privateConstructorUsedError;
   List<Branch> get branchesItems => throw _privateConstructorUsedError;
-  SexEnums? get sex => throw _privateConstructorUsedError;
+  String? get sex => throw _privateConstructorUsedError;
   int? get jobPositionId => throw _privateConstructorUsedError;
   int? get statesId => throw _privateConstructorUsedError;
   int? get regionId => throw _privateConstructorUsedError;
@@ -1182,7 +1182,7 @@ mixin _$CandidatesState {
             List<State> statesItems,
             List<District> regionItems,
             List<Branch> branchesItems,
-            SexEnums? sex,
+            String? sex,
             int? jobPositionId,
             int? statesId,
             int? regionId,
@@ -1205,7 +1205,7 @@ mixin _$CandidatesState {
             List<State> statesItems,
             List<District> regionItems,
             List<Branch> branchesItems,
-            SexEnums? sex,
+            String? sex,
             int? jobPositionId,
             int? statesId,
             int? regionId,
@@ -1228,7 +1228,7 @@ mixin _$CandidatesState {
             List<State> statesItems,
             List<District> regionItems,
             List<Branch> branchesItems,
-            SexEnums? sex,
+            String? sex,
             int? jobPositionId,
             int? statesId,
             int? regionId,
@@ -1278,7 +1278,7 @@ abstract class $CandidatesStateCopyWith<$Res> {
       List<State> statesItems,
       List<District> regionItems,
       List<Branch> branchesItems,
-      SexEnums? sex,
+      String? sex,
       int? jobPositionId,
       int? statesId,
       int? regionId,
@@ -1353,7 +1353,7 @@ class _$CandidatesStateCopyWithImpl<$Res, $Val extends CandidatesState>
       sex: freezed == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
-              as SexEnums?,
+              as String?,
       jobPositionId: freezed == jobPositionId
           ? _value.jobPositionId
           : jobPositionId // ignore: cast_nullable_to_non_nullable
@@ -1410,7 +1410,7 @@ abstract class _$$_StateCandidatesStateCopyWith<$Res>
       List<State> statesItems,
       List<District> regionItems,
       List<Branch> branchesItems,
-      SexEnums? sex,
+      String? sex,
       int? jobPositionId,
       int? statesId,
       int? regionId,
@@ -1483,7 +1483,7 @@ class __$$_StateCandidatesStateCopyWithImpl<$Res>
       sex: freezed == sex
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
-              as SexEnums?,
+              as String?,
       jobPositionId: freezed == jobPositionId
           ? _value.jobPositionId
           : jobPositionId // ignore: cast_nullable_to_non_nullable
@@ -1612,7 +1612,7 @@ class _$_StateCandidatesState extends _StateCandidatesState {
   }
 
   @override
-  final SexEnums? sex;
+  final String? sex;
   @override
   final int? jobPositionId;
   @override
@@ -1719,7 +1719,7 @@ class _$_StateCandidatesState extends _StateCandidatesState {
             List<State> statesItems,
             List<District> regionItems,
             List<Branch> branchesItems,
-            SexEnums? sex,
+            String? sex,
             int? jobPositionId,
             int? statesId,
             int? regionId,
@@ -1762,7 +1762,7 @@ class _$_StateCandidatesState extends _StateCandidatesState {
             List<State> statesItems,
             List<District> regionItems,
             List<Branch> branchesItems,
-            SexEnums? sex,
+            String? sex,
             int? jobPositionId,
             int? statesId,
             int? regionId,
@@ -1805,7 +1805,7 @@ class _$_StateCandidatesState extends _StateCandidatesState {
             List<State> statesItems,
             List<District> regionItems,
             List<Branch> branchesItems,
-            SexEnums? sex,
+            String? sex,
             int? jobPositionId,
             int? statesId,
             int? regionId,
@@ -1879,7 +1879,7 @@ abstract class _StateCandidatesState extends CandidatesState {
       final List<State> statesItems,
       final List<District> regionItems,
       final List<Branch> branchesItems,
-      final SexEnums? sex,
+      final String? sex,
       final int? jobPositionId,
       final int? statesId,
       final int? regionId,
@@ -1906,7 +1906,7 @@ abstract class _StateCandidatesState extends CandidatesState {
   @override
   List<Branch> get branchesItems;
   @override
-  SexEnums? get sex;
+  String? get sex;
   @override
   int? get jobPositionId;
   @override
